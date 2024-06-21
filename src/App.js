@@ -4,6 +4,7 @@ import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import Welcome from './components/Welcome/Welcome';
 import ComposeEmail from './components/ComposeEmail/ComposeEmail';
+import Inbox from './components/Inbox/Inbox';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/' element={<SignUp />} />
         <Route path='/Welcome' element={<Welcome/>}/> 
-        <Route path='/ComposeEmail' element={<ComposeEmail/>}/>
+        <Route path='/Compose' element={<ComposeEmail/>}/>
+        <Route path='/Inbox' element={<Inbox/>}/>
       </Routes>
     </Router>
   );
