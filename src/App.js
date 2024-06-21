@@ -3,6 +3,7 @@ import './App.css';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import Welcome from './components/Welcome/Welcome';
+import ComposeEmail from './components/ComposeEmail/ComposeEmail';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/' element={<SignUp />} />
         <Route path='/Welcome' element={<Welcome/>}/> 
+        <Route path='/ComposeEmail' element={<ComposeEmail/>}/>
       </Routes>
     </Router>
   );

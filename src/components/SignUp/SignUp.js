@@ -36,13 +36,14 @@ const SignUp = () => {
             }
         }).then((data) => {
             console.log(data);
+            setRedirect(true);
         }).catch((error) => {
             console.log(error);
             alert(error.message)
         })
         setEmail('');
         setPassword('');
-        setRedirect(true);
+        
     };
 
     if(redirect){
