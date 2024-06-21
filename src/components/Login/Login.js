@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
+import { myAction } from "../../store/store";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
 
+    const dispatch = useDispatch();
+
     const formHandler = (e) => {
         e.preventDefault();
+        dispatch(myAction.setSender(email))
 
         fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBP9iT5A1bLKRM74yumPNG4oGfKt3T4pGM',{
             method: 'POST',
@@ -36,7 +41,6 @@ const Login = () => {
         })
         setEmail('');
         setPassword('');
-
     };
     if(redirect){
         return <Navigate to='/Welcome'></Navigate>

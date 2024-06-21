@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const ComposeEmail = () => {
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [body, setBody] = useState('');
+
+    const sender = useSelector(state => state.sender);
 
     const formHandler = (e) => {
         e.preventDefault();
@@ -16,7 +19,8 @@ const ComposeEmail = () => {
             body: JSON.stringify({
                 email,
                 subject,
-                body
+                body,
+                sender
             })
         }).then((res) => {
             if(res.ok){
