@@ -13,7 +13,8 @@ const Login = () => {
 
     const formHandler = (e) => {
         e.preventDefault();
-        dispatch(myAction.setSender(email))
+        dispatch(myAction.setSender(email));
+        localStorage.setItem('sender',email);
 
         fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBP9iT5A1bLKRM74yumPNG4oGfKt3T4pGM',{
             method: 'POST',

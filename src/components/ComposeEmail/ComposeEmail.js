@@ -7,7 +7,7 @@ const ComposeEmail = () => {
     const [subject, setSubject] = useState('');
     const [body, setBody] = useState('');
 
-    const sender = useSelector(state => state.sender);
+    const sender = localStorage.getItem('sender');
 
     const formHandler = (e) => {
         e.preventDefault();
