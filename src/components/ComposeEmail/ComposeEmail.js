@@ -35,6 +35,9 @@ const ComposeEmail = () => {
         }).catch((error) => {
             alert(error);
         })
+        setBody('');
+        setEmail('');
+        setSubject('');
     };
 
 

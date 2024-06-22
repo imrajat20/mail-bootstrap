@@ -52,7 +52,7 @@
 
 // export default Inbox;
 import React, { useState, useEffect } from "react";
-import { Container, Button, ListGroup, Modal } from "react-bootstrap";
+import { Container, Button, ListGroup, Modal, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navigate } from "react-router-dom";
 
@@ -92,12 +92,31 @@ const Inbox = () => {
     setSelectedEmail(null);
   };
 
+  const deleteHandler = (emailId) => {
+    fetch(`${firebaseConfig.databaseURL}/emails/${emailId}.json`, {
+      method: 'DELETE'
+    })
+    .then((response) => {
+      if (response.ok) {
+        setEmails((prevEmails) => prevEmails.filter(email => email.id !== emailId));
+      } else {
+        console.error("Failed to delete email");
+      }
+    })
+    .catch((error) => console.error("Error deleting email: ", error));
+  };
+
   if(redirect){
     return <Navigate to='/Compose'></Navigate>
   }
 
   return (
     <Container>
+      <Navbar bg="light" variant="primary">
+        <Container>
+          <Navbar.Brand>My Emails</Navbar.Brand>
+        </Container>
+      </Navbar>
       <h2>Inbox</h2>
       <Button onClick={handleButton} className="mb-3">
         Compose
@@ -106,6 +125,7 @@ const Inbox = () => {
         {emails.map((email) => (
           <ListGroup.Item key={email.id} action onClick={() => handleEmailClick(email)}>
             <strong>From: </strong> {email.email} | <strong>Subject: </strong> {email.subject}
+            <Button variant="danger" className="ml-3" onClick={() => deleteHandler(email.id)}>Delete</Button>
           </ListGroup.Item>
         ))}
       </ListGroup>
