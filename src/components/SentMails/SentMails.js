@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, ListGroup, Modal, Navbar, Badge, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const firebaseConfig = {
   databaseURL: "https://mail-client-68ac0-default-rtdb.firebaseio.com"
@@ -89,6 +89,9 @@ const SentMails = () => {
         Compose
       </Button>
       <h2 style={{padding: '1rem', background: 'lightgray'}}>Sent</h2>
+      <h2 style={{padding: '1rem', background: 'lightgray'}}>
+        <Link to='/Inbox'>Inbox</Link>
+      </h2>
       </Col>
       <Col>
       <ListGroup>

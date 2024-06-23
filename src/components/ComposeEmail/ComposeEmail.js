@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const ComposeEmail = () => {
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [body, setBody] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
     const sender = localStorage.getItem('sender');
 
@@ -32,6 +33,7 @@ const ComposeEmail = () => {
             }
         }).then((data) => {
             console.log(data);
+            setRedirect(true);
         }).catch((error) => {
             alert(error);
         })
@@ -39,6 +41,9 @@ const ComposeEmail = () => {
         setEmail('');
         setSubject('');
     };
+    if(redirect){
+        return <Navigate to='/Inbox'></Navigate>
+    }
 
 
     return (
